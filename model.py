@@ -62,6 +62,8 @@ class GPTLanguageModel(nn.Module):
         self.ln_f = nn.LayerNorm(d_model)
         self.lm_head = nn.Linear(d_model, vocab_size, bias=False)
         self.lm_head.weight = self.token_embedding.weight
+        self.scale = d_model ** -0.5
+        nn.init.normal_(self.pos_embedding, mean=0.0, std=0.02)
     def forward(self, idx):
         B, T = idx.size()
         tok = self.token_embedding(idx)
@@ -70,7 +72,7 @@ class GPTLanguageModel(nn.Module):
         for blk in self.blocks:
             x = blk(x)
         x = self.ln_f(x)
-        logits = self.lm_head(x)
+        logits = self.lm_head(x * self.scale)
         return logits
     def generate(self, idx, max_new_tokens, temperature=1.0, top_k=None):
         for _ in range(max_new_tokens):

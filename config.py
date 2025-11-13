@@ -5,12 +5,12 @@ def get(exp):
             'n_layers': 2,
             'n_heads': 4,
             'dropout': 0.3,
-            'lr': 3e-4,
-            'weight_decay': 0.1,
-            'epochs': 10,
+            'lr': 1e-4,
+            'weight_decay': 0.01,
+            'epochs': 12,
             'batch_size': 64,
             'block_size': 256,
-            'warmup_steps': 0,
+            'warmup_steps': 500,
             'patience': 0
         }
     if exp == 'overfit':
@@ -37,6 +37,6 @@ def get(exp):
         'epochs': 30,
         'batch_size': 64,
         'block_size': 256,
-        'warmup_steps': 2000,
+        'warmup_steps': 100,
         'patience': 6
     }
