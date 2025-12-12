@@ -1,4 +1,4 @@
-# Assignment 2 — Neural Language Model (PyTorch)
+# Neural Language Model (PyTorch)
 
 Train a GPT-style Transformer language model on Pride and Prejudice using PyTorch. The project includes tokenization, batching, model, training loop, evaluation (perplexity), plotting, checkpointing, and text generation.
 
